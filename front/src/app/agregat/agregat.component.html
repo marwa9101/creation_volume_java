@@ -1,0 +1,51 @@
+<form #baieNameForm="ngForm" (ngSubmit)="submitBaieName(baieNameForm.value)" class="main-form col-8" >
+    
+        <div class="form-group">
+            <label for="baieName">Nom de la Baie</label>
+            <select (ngModel)="baieName" name="baieName" class="form-control"  id="baieName" required>
+                <option value="flash001">flash001</option>
+                <option value="flash002">flash002</option>
+                <option value="SSM001">SSM001</option>
+                <option value="SSM002">SSM002</option>
+            </select>
+          </div>
+        <!-- <div class="col-sm">
+          <label for="type" class="form-label">Type du volume</label>
+            <select class="form-select" id="type">
+                <option value="SAN">SAN</option>
+                <option value="NAS">NAS</option>
+            </select>
+        </div> -->
+ 
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" >Submit</button>
+    </div>
+</form>
+<h2>Agregat</h2>
+<div class="container">
+    <h3>Nom de l'Agregat: </h3>
+    <table [hidden]="tableEmpty" class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Taille</th>
+                <th scope="col">Taille disponible</th>
+                <th scope="col">Taille utilisé</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let agregat of agregats">  
+            <tr> 
+                <td>{{agregat.name}}</td>
+                <td>{{agregat.size}}</td>
+                <td>{{agregat.availablesize}}</td>
+                <td>{{agregat.usedSize}}</td>
+            </tr>
+        </tbody> 
+        </table>  
+</div>    
+<div class="container">
+    <h3>Nom de svm: </h3>
+    <ul *ngFor="let svm of svms" >
+        <li>{{svm}}</li>
+    </ul>
+</div> 
