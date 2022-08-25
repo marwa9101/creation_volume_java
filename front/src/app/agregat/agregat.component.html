@@ -1,0 +1,101 @@
+<div class="container main">
+<form #baieNameForm="ngForm" (ngSubmit)="submitBaieName(baieNameForm.value)" class="main-form col-8" >
+    <div class="form-group">
+        <label for="baieName">Nom de la Baie</label>
+        <select (ngModel)="baieName" name="baieName" class="form-control"  id="baieName" required>
+            <option value="flash001">flash001</option>
+            <option value="flash002">flash002</option>
+            <option value="SSM001">SSM001</option>
+            <option value="SSM002">SSM002</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-light" type="submit" >Next</button>
+    </div>
+</form>
+
+<form #agregatForm="ngForm" (ngSubmit)="submitAgregat(agregatForm.value)" >
+    <div class="container d-flex justify-content-between">
+        <div class="container col-lg-6 ">  
+            <div class="container svm-container">
+                <label for="svmName" class="form-label">Nom de svm:</label>
+                <select (ngModel)="volume.svmName" name="svmName" class="form-select" id="svmName" >
+                    <option hidden selected> -- select an option -- </option>
+                    <option *ngFor="let svm of svms">{{svm}}</option>           
+                </select>
+            </div>
+            <div>
+                <div>
+                    <input (ngModel)="volume.volumeType" name="volumeType" type="radio" 
+                            id="SanVolumeType" value="SAN" (click)="displayDivSan()">
+                    <label for="SanVolumeType">SAN</label>
+                </div>
+
+                <div>
+                    <input type="radio"  (ngModel)="volume.volumeType" name="volumeType" 
+                            id="NasVolumeType" value="NAS" (click)="displayDivNas()">
+                    <label for="NasVolumeType">NAS</label>
+                </div>           
+            </div>
+        </div>
+        <div class="container col-lg-6">
+            <div class="container col-lg-12">
+                <label for="type" class="form-label">Nom de l'agregat:</label>
+                <select (ngModel)="volume.agregatName" name="agregatName" class="form-select" id="agregatName">
+                    <option hidden selected> -- select an option -- </option>
+                    <option *ngFor="let agregat of agregats">{{agregat.name}}</option>           
+                </select>
+            </div>
+            <div>
+                <table [hidden]="tableEmpty" class="table table-sm col-lg-12">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Taille</th>
+                            <th scope="col">Taille disponible</th>
+                            <th scope="col">Taille utilisé</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let agregat of agregats">  
+                        <tr> 
+                            <td>{{agregat.name}}</td>
+                            <td>{{agregat.size}}</td>
+                            <td>{{agregat.availablesize}}</td>
+                            <td>{{agregat.usedSize}}</td>
+                        </tr>
+                    </tbody> 
+                </table>
+            </div>
+        </div>  
+    </div>
+
+    <div>
+        <label for="volumeName" class="form-label">Nom de volume</label>
+        <input (ngModel)="volume.volumeName" type="text" id="volumeName" name="volumeName" required>
+    </div>
+
+    <div>
+        <label for="volumeSize" class="form-label">Taille de volume</label>
+        <input (ngModel)="volume.volumeSize" type="number" id="volumeSize" name="volumeSize" required>
+    </div>
+    <div *ngIf="san==true"> 
+        <div>
+            <label for="lunName" class="form-label">Nom de LUN</label>
+            <input (ngModel)="volume.lunName" type="text" id="lunName" name="lunName">
+        </div>
+
+        <div>
+            <label for="lunTaille" class="form-label">Taille de LUN</label>
+            <input (ngModel)="volume.lunTaille" type="number" id="lunTaille" name="lunTaille">
+        </div>
+    </div>
+    <div *ngIf="nas==true">
+        <label for="policyExport" class="form-label">Export policy</label>
+        <input (ngModel)="volume.policyExport" type="text" id="policyExport" name="policyExport">
+    </div>  
+
+    <div class="col-12">
+        <button class="btn btn-light" type="submit">Next</button>
+    </div>
+</form>
+</div>

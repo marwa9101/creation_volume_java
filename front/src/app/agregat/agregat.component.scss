@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    padding: 30px;
+    background-image: linear-gradient(#232D4B, #005573, white);
+    color: white;
+   }
+.main-form{
+    margin: 0px auto 0;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 20px;
+    padding: 30px 30px 10px;
+    .btn {
+        margin: 20px auto 0;
+    }
+}
+.table {
+    width: 100%;
+    margin: 0 auto;
+}
+.svm-container{
+    
+}
+
